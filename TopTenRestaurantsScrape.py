@@ -21,11 +21,6 @@ def save_to_json(data, filename):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-def human_like_scroll(driver):
-    for _ in range(random.randint(2, 5)):
-        driver.execute_script("window.scrollBy(0, arguments[0]);", random.randint(200, 500))
-        time.sleep(random.uniform(2, 5))
-
 def main():
     city = input("Enter the city name: ").strip()
     search_query = f"top ten restaurants {city}"
@@ -54,7 +49,6 @@ def main():
             input("CAPTCHA detected! Please solve it manually and press Enter to continue...")
         
         time.sleep(5)
-        human_like_scroll(driver)
         
         restaurant_names = driver.find_elements(By.XPATH, "//span[@class='OSrXXb']")
         ratings_list = []
